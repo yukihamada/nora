@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nora:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    env_file:
+      - ./config/.env
+    ports:
+      - "8080:8080"  # For web applications
+    restart: unless-stopped

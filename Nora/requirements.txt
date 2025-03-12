@@ -1,0 +1,34 @@
+# Core dependencies
+requests>=2.28.0
+python-dotenv>=1.0.0
+pyyaml>=6.0
+openai>=1.0.0
+
+# Web browsing
+beautifulsoup4>=4.12.0
+selenium>=4.10.0
+webdriver-manager>=3.8.6
+pyppeteer>=1.0.2
+
+# Testing
+pytest>=7.3.1
+pytest-cov>=4.1.0
+
+# GitHub integration
+PyGithub>=1.58.0
+
+# Cloud services
+boto3>=1.26.0  # AWS SDK
+google-cloud-storage>=2.9.0
+google-api-python-client>=2.86.0
+
+# Domain management
+namecheap-api>=1.0.0
+route53-dns>=0.1.0
+
+# Monetization
+stripe>=5.4.0
+
+# Utilities
+tqdm>=4.65.0
+colorama>=0.4.6
