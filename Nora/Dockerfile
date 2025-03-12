@@ -28,5 +28,8 @@ RUN mkdir -p data/cache data/logs data/generated data/deployments
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
+# Expose the port
+EXPOSE 8080
+
 # Run the application
-CMD ["python", "main.py"]
+CMD ["python", "nora_ui.py"]
