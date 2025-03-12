@@ -15,7 +15,7 @@ from utils.file_utils import ensure_directory
 
 logger = logging.getLogger("nora.agents.nora_ui_agent")
 
-class NoraUIAgent:
+class NoraUiAgent:
     """
     Nora UI Agent for Nora.
     Provides a web-based user interface for interacting with Nora.
@@ -30,7 +30,8 @@ class NoraUIAgent:
         """
         self.config = config
         self.app = Flask(__name__)
-        self.port = 58281
+        # Get port from environment variable for Fly.io or use default
+        self.port = int(os.environ.get('PORT', 58281))
         self.server_thread = None
         self.task_history = []
         self.projects = []
@@ -55,6 +56,12 @@ class NoraUIAgent:
         logger.info(f"Nora UI Agent executing task: {task_description}")
         
         try:
+            # Create templates directory if it doesn't exist
+            templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
+            if not os.path.exists(templates_dir):
+                self.create_templates()
+                logger.info(f"Created UI templates in {templates_dir}")
+            
             # Start the UI server if it's not already running
             if not self.is_running:
                 self._start_server()
@@ -141,6 +148,11 @@ class NoraUIAgent:
     def _start_server(self):
         """Start the Flask server in a separate thread."""
         if not self.is_running:
+            # Create templates directory if it doesn't exist
+            templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
+            if not os.path.exists(templates_dir):
+                self.create_templates()
+            
             def run_server():
                 self.app.run(host='0.0.0.0', port=self.port, debug=False, use_reloader=False)
             

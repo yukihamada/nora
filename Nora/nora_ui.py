@@ -48,6 +48,10 @@ def main():
         
         logger.info(f"Nora UI started: {result}")
         
+        # Get port from environment variable for Fly.io or use default
+        port = int(os.environ.get('PORT', 8080))
+        logger.info(f"Using port: {port}")
+        
         # Keep the main thread running
         try:
             while True:
